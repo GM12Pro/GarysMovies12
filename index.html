@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GarysMovies12</title>
+
+<style>
+
+:root {
+    --blue: #58b7e5;
+    --blue-light: #8bd8f7;
+    --blue-dark: #2f87b2;
+
+    --bg-dark: #22292d;
+    --panel: rgba(39, 47, 52, 0.94);
+    --panel-light: rgba(52, 62, 68, 0.94);
+
+    --outline: rgba(117, 179, 207, 0.65);
+    --outline-soft: rgba(150, 194, 213, 0.25);
+
+    --text: #f2f6f8;
+    --muted: #aab8bf;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #263036;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   GM_FLATGRASS BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 28, 32, 0.25),
+            rgba(20, 28, 32, 0.42)
+        ),
+        url("gm_flatgrass.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    filter: blur(2px);
+    transform: scale(1.025);
+}
+
+
+/* =========================================
+   TOP NAVIGATION
+========================================= */
+
+header {
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(31, 38, 42, 0.96);
+
+    border-bottom:
+        2px solid var(--blue);
+
+    box-shadow:
+        0 6px 22px rgba(0,0,0,0.42),
+        0 0 18px rgba(88,183,229,0.08);
+
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+
+    color: white;
+
+    text-shadow:
+        0 0 18px rgba(255,255,255,0.08);
+}
+
+.logo span {
+    color: var(--blue);
+
+    text-shadow:
+        0 0 15px rgba(88,183,229,0.35);
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #d2dce1;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    padding: 10px 5px;
+
+    border-bottom: 2px solid transparent;
+
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: white;
+
+    border-bottom-color: var(--blue);
+
+    text-shadow:
+        0 0 10px rgba(88,183,229,0.45);
+}
+
+.youtube-button {
+    background:
+        linear-gradient(
+            180deg,
+            #63bde6,
+            #3b94bd
+        );
+
+    border: 1px solid #8ad4f4;
+
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.3),
+        0 5px 15px rgba(0,0,0,0.25);
+
+    transition: 0.2s;
+}
+
+.youtube-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 16px rgba(88,183,229,.38),
+        0 7px 18px rgba(0,0,0,.35);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 540px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 80px 7% 100px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(25, 32, 36, 0.88) 0%,
+            rgba(32, 41, 46, 0.67) 48%,
+            rgba(32, 41, 46, 0.12) 100%
+        );
+
+    border-bottom:
+        1px solid rgba(125,190,220,0.3);
+}
+
+.hero-content {
+    max-width: 780px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border:
+        1px solid var(--outline);
+
+    background:
+        rgba(34, 44, 49, 0.88);
+
+    color: var(--blue-light);
+
+    border-radius: 4px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 23px;
+
+    box-shadow:
+        inset 0 0 12px rgba(88,183,229,0.04),
+        0 4px 15px rgba(0,0,0,.2);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    background: #76d0f4;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 5px #76d0f4,
+        0 0 13px #58b7e5;
+}
+
+.hero h1 {
+    font-size: clamp(58px, 8vw, 94px);
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 28px;
+
+    color: white;
+
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.5);
+}
+
+.hero h1 span {
+    color: var(--blue);
+
+    text-shadow:
+        0 0 22px rgba(88,183,229,.25);
+}
+
+.hero p {
+    max-width: 650px;
+
+    font-size: 18px;
+
+    line-height: 1.75;
+
+    color: #c7d2d7;
+
+    margin-bottom: 31px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 14px 24px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.primary {
+    color: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #62bee8,
+            #3d91ba
+        );
+
+    border: 1px solid #8fd8f7;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.3),
+        0 5px 18px rgba(0,0,0,.3);
+}
+
+.secondary {
+    color: #dae8ee;
+
+    background:
+        rgba(43,53,58,.92);
+
+    border:
+        1px solid #718b97;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 18px rgba(88,183,229,.35),
+        0 8px 22px rgba(0,0,0,.4);
+}
+
+
+/* =========================================
+   SERVER BAR
+========================================= */
+
+.server-bar {
+    width: 86%;
+
+    margin: -34px auto 0;
+
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px 21px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(50,60,66,.98),
+            rgba(37,46,51,.98)
+        );
+
+    border:
+        1px solid var(--outline);
+
+    border-top:
+        2px solid rgba(139,216,247,.85);
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.38),
+        inset 0 0 25px rgba(88,183,229,.025);
+}
+
+.server-info {
+    display: flex;
+    gap: 33px;
+
+    font-size: 12px;
+
+    letter-spacing: .4px;
+
+    color: #aebcc2;
+}
+
+.server-info strong {
+    color: var(--blue-light);
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.section-title {
+    font-size: 29px;
+
+    margin-bottom: 25px;
+
+    color: #f4f8fa;
+
+    letter-spacing: -.5px;
+}
+
+.section-title::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin-top: 9px;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 9px rgba(88,183,229,.45);
+}
+
+
+/* =========================================
+   FEATURED MOVIE
+========================================= */
+
+.featured {
+    padding: 70px 7% 55px;
+
+    background:
+        rgba(39,47,52,.68);
+}
+
+.feature-card {
+    min-height: 360px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    padding: 50px;
+
+    border:
+        1px solid rgba(115,191,226,.65);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.42),
+        inset 0 0 70px rgba(0,0,0,.15);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(24,34,39,.98) 0%,
+            rgba(27,50,61,.88) 45%,
+            rgba(22,44,55,.35) 100%
+        ),
+        url("https://i.ytimg.com/vi/HHT3GyHaVjM/hqdefault.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.feature-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border:
+        1px solid rgba(255,255,255,.06);
+
+    pointer-events: none;
+}
+
+.feature-content {
+    max-width: 620px;
+
+    position: relative;
+    z-index: 3;
+}
+
+.feature-label {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    margin-bottom: 13px;
+
+    background:
+        rgba(76,161,202,.16);
+
+    color: #93dcfa;
+
+    border:
+        1px solid rgba(88,183,229,.45);
+
+    border-radius: 3px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.feature-content h2 {
+    font-size: 47px;
+
+    margin-bottom: 13px;
+
+    color: white;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,.65);
+}
+
+.feature-meta {
+    margin-bottom: 15px;
+
+    color: #90d6f2;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.feature-content p {
+    max-width: 580px;
+
+    color: #d2dde2;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.8);
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search-area {
+    padding: 0 7% 45px;
+
+    background:
+        rgba(39,47,52,.68);
+}
+
+.search {
+    max-width: 650px;
+
+    display: flex;
+
+    border:
+        1px solid #658794;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    background:
+        rgba(32,40,44,.96);
+
+    box-shadow:
+        inset 0 0 18px rgba(0,0,0,.12),
+        0 5px 20px rgba(0,0,0,.28);
+}
+
+.search:focus-within {
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 2px rgba(88,183,229,.1),
+        0 0 18px rgba(88,183,229,.16);
+}
+
+.search input {
+    flex: 1;
+
+    padding: 16px 17px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.search input::placeholder {
+    color: #89999f;
+}
+
+.search button {
+    padding: 0 23px;
+
+    border: none;
+
+    border-left:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        #469fc8;
+
+    color: white;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   MOVIE DATABASE
+========================================= */
+
+.movies-section {
+    padding: 48px 7% 80px;
+
+    background:
+        rgba(33,41,45,.80);
+
+    border-top:
+        1px solid rgba(130,185,210,.2);
+}
+
+.section-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.section-top h2 {
+    font-size: 30px;
+}
+
+.movie-count {
+    padding: 7px 10px;
+
+    border:
+        1px solid rgba(98,165,194,.55);
+
+    border-radius: 3px;
+
+    color: #8ed1ef;
+
+    background:
+        rgba(70,130,155,.08);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.movies {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================
+   MOVIE CARDS
+========================================= */
+
+.movie {
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(49,59,65,.98),
+            rgba(37,46,51,.98)
+        );
+
+    border:
+        1px solid rgba(114,151,167,.6);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.32);
+
+    transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+}
+
+.movie::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 8px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.025);
+}
+
+.movie:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 0 1px rgba(88,183,229,.1),
+        0 0 20px rgba(88,183,229,.15),
+        0 16px 30px rgba(0,0,0,.4);
+}
+
+.thumbnail {
+    height: 170px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #20292d;
+
+    border-bottom:
+        1px solid rgba(135,180,200,.3);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .35s,
+        filter .35s;
+}
+
+.movie:hover .thumbnail img {
+    transform: scale(1.055);
+
+    filter: brightness(.82);
+}
+
+.play-button {
+    width: 58px;
+    height: 58px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.75);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(69,164,208,.95);
+
+    border:
+        2px solid rgba(255,255,255,.75);
+
+    color: white;
+
+    font-size: 22px;
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 0 7px rgba(88,183,229,.12),
+        0 0 22px rgba(88,183,229,.55);
+
+    transition: .22s;
+}
+
+.movie:hover .play-button {
+    opacity: 1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+}
+
+.movie-info {
+    padding: 17px;
+}
+
+.movie-number {
+    margin-bottom: 7px;
+
+    color: #72bddd;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.movie-info h3 {
+    min-height: 40px;
+
+    margin-bottom: 8px;
+
+    color: #f1f5f7;
+
+    font-size: 16px;
+
+    line-height: 1.25;
+}
+
+.movie-info p {
+    color: #97a8af;
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+.watch-button {
+    display: block;
+
+    padding: 10px;
+
+    text-align: center;
+
+    background:
+        rgba(63,78,86,.9);
+
+    border:
+        1px solid #657e8a;
+
+    border-radius: 4px;
+
+    color: #cae8f5;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: .7px;
+
+    transition: .18s;
+}
+
+.watch-button:hover {
+    background:
+        #4ca5ce;
+
+    border-color:
+        #86d6f5;
+
+    color: white;
+
+    box-shadow:
+        0 0 16px rgba(88,183,229,.28);
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about {
+    padding: 75px 7%;
+
+    background:
+        rgba(36,44,49,.92);
+
+    border-top:
+        1px solid rgba(110,165,190,.25);
+}
+
+.about-box {
+    max-width: 850px;
+
+    padding-left: 20px;
+
+    border-left:
+        3px solid var(--blue);
+}
+
+.about h2 {
+    margin-bottom: 15px;
+
+    font-size: 31px;
+}
+
+.about p {
+    color: #aab9bf;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 29px 7%;
+
+    background:
+        #1c2428;
+
+    border-top:
+        1px solid #48616d;
+
+    color: #89999f;
+
+    font-size: 12px;
+}
+
+footer a {
+    color: #76c9eb;
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   LOADING SCREEN
+========================================= */
+
+.loading-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle,
+            #34454d,
+            #1e282d
+        );
+
+    transition:
+        opacity .45s;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.loader-ring {
+    width: 78px;
+    height: 78px;
+
+    position: relative;
+
+    margin-bottom: 26px;
+}
+
+.loader-ring::before,
+.loader-ring::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+}
+
+.loader-ring::before {
+    border:
+        3px solid rgba(120,185,215,.18);
+}
+
+.loader-ring::after {
+    border:
+        3px solid transparent;
+
+    border-top-color:
+        var(--blue);
+
+    border-right-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 12px rgba(88,183,229,.3);
+
+    animation:
+        spin 1s linear infinite;
+}
+
+.loader-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width: 10px;
+    height: 10px;
+
+    background:
+        #7ed5f8;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px #58b7e5;
+}
+
+.loading-title {
+    color: #a4e3fa;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+.loading-status {
+    margin-top: 8px;
+
+    color: #83969e;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   CLICK GLOW
+========================================= */
+
+.click-glow {
+    position: fixed;
+
+    width: 8px;
+    height: 8px;
+
+    z-index: 10000;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    background: #a2e6ff;
+
+    box-shadow:
+        0 0 10px #a2e6ff,
+        0 0 24px #58b7e5,
+        0 0 40px rgba(88,183,229,.7);
+
+    animation:
+        clickGlow .5s ease-out forwards;
+}
+
+@keyframes clickGlow {
+
+    from {
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translate(-50%,-50%)
+            scale(12);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   SCREEN SIZE
+========================================= */
+
+@media(max-width:1100px) {
+
+    .movies {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="background"></div>
+
+
+<!-- LOADING -->
+
+<div class="loading-screen" id="loading">
+
+    <div class="loader-ring">
+
+        <div class="loader-center"></div>
+
+    </div>
+
+    <div class="loading-title">
+        GARRYSMOVIES12
+    </div>
+
+    <div class="loading-status">
+        LOADING MOVIE DATABASE...
+    </div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        Garys<span>Movies12</span>
+    </div>
+
+    <nav>
+
+        <a href="#">
+            HOME
+        </a>
+
+        <a href="#featured">
+            FEATURED
+        </a>
+
+        <a href="#movies">
+            MOVIES
+        </a>
+
+        <a href="#about">
+            ABOUT
+        </a>
+
+    </nav>
+
+    <a
+        class="youtube-button"
+        href="https://www.youtube.com/@GarrysMovies12"
+        target="_blank">
+
+        YOUTUBE
+
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="status">
+
+            <div class="status-dot"></div>
+
+            GM12 SERVER ONLINE
+
+        </div>
+
+        <h1>
+            Garys<span>Movies12</span>
+        </h1>
+
+        <p>
+            Welcome to the GarysMovies12 movie database.
+            Browse the complete collection, select a production,
+            and enter the world of GarysMovies12.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#movies"
+                class="button primary">
+
+                BROWSE MOVIES
+
+            </a>
+
+            <a
+                href="#featured"
+                class="button secondary">
+
+                VIEW FEATURED
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVER INFO -->
+
+<div class="server-bar">
+
+    <div class="server-info">
+
+        <div>
+            SERVER:
+            <strong>GarysMovies12</strong>
+        </div>
+
+        <div>
+            STATUS:
+            <strong>ONLINE</strong>
+        </div>
+
+        <div>
+            MOVIES:
+            <strong>8</strong>
+        </div>
+
+    </div>
+
+    <div class="server-info">
+
+        <strong>MAP: GM_FLATGRASS</strong>
+
+    </div>
+
+</div>
+
+
+<!-- FEATURED -->
+
+<section
+    class="featured"
+    id="featured">
+
+    <h2 class="section-title">
+        Featured Movie
+    </h2>
+
+
+    <div class="feature-card">
+
+        <div class="feature-content">
+
+            <div class="feature-label">
+                MOST POPULAR
+            </div>
+
+            <h2>
+                Greg and the Kernal
+            </h2>
+
+            <div class="feature-meta">
+                GARRYSMOVIES12 • MOVIE 04
+            </div>
+
+            <p>
+                One of the biggest GarysMovies12 productions.
+                Greg and the Kernal takes center stage as the
+                featured movie in the collection.
+            </p>
+
+            <a
+                href="https://www.youtube.com/watch?v=HHT3GyHaVjM"
+                target="_blank"
+                class="button primary watch-link">
+
+                ▶ WATCH MOVIE
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-area">
+
+    <div class="search">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search the GarysMovies12 database..."
+            onkeyup="searchMovies()">
+
+        <button>
+            SEARCH
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MOVIE DATABASE -->
+
+<section
+    class="movies-section"
+    id="movies">
+
+    <div class="section-top">
+
+        <h2>
+            Movie Database
+        </h2>
+
+        <div class="movie-count">
+            8 MOVIES AVAILABLE
+        </div>
+
+    </div>
+
+
+    <div class="movies">
+
+
+        <!-- 01 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/A4ep-U79MSc/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 01
+                </div>
+
+                <h3>
+                    Rise of the Melons</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=A4ep-U79MSc">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 02 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/__cXxXXIIns/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 02
+                </div>
+
+                <h3>
+                    Garry Warlock</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=__cXxXXIIns">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 03 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/-qUj2_Qv4Bc/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 03
+                </div>
+
+                <h3>
+                    Avenging the Simulation</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=-qUj2_Qv4Bc">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 04 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/HHT3GyHaVjM/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 04 • FEATURED
+                </div>
+
+                <h3>
+                    Greg and the Kernal</h3>
+
+                <p>
+                    GarysMovies12 • Featured
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=HHT3GyHaVjM">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 05 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/DbMLJSUXFo0/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 05
+                </div>
+
+                <h3>
+                    Escaping the Simulation</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=DbMLJSUXFo0">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 06 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/bi9uXLA0M-8/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 06
+                </div>
+
+                <h3>
+                    Hobo Simulation</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=bi9uXLA0M-8">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 07 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/sy6eSwqM5yY/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 07
+                </div>
+
+                <h3>
+                    Nathan and the Esse</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=sy6eSwqM5yY">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 08 -->
+
+        <div class="movie">
+
+            <div class="thumbnail">
+
+                <img
+                    src="https://i.ytimg.com/vi/lL-lQRZq5ug/hqdefault.jpg">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+
+                <div class="movie-number">
+                    MOVIE 08
+                </div>
+
+                <h3>
+                    Pickalous Cage Wild Adventures</h3>
+
+                <p>
+                    GarysMovies12 Production
+                </p>
+
+                <a
+                    class="watch-button watch-link"
+                    target="_blank"
+                    href="https://www.youtube.com/watch?v=lL-lQRZq5ug">
+
+                    WATCH MOVIE
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+    class="about"
+    id="about">
+
+    <div class="about-box">
+
+        <h2>
+            About GarysMovies12
+        </h2>
+
+        <p>
+            GarysMovies12 is a collection of original Garry's Mod
+            movies and stories. This website was built on Linux as
+            the home of the complete GarysMovies12 movie database.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 GarysMovies12
+    </p>
+
+    <a
+        href="https://www.youtube.com/@GarrysMovies12"
+        target="_blank">
+
+        GARRYSMOVIES12 ON YOUTUBE
+
+    </a>
+
+</footer>
+
+
+<script>
+
+
+/* STARTUP LOADING SCREEN */
+
+window.addEventListener("load", function() {
+
+    setTimeout(function() {
+
+        document
+        .getElementById("loading")
+        .classList
+        .add("hidden");
+
+    }, 1100);
+
+});
+
+
+/* SEARCH */
+
+function searchMovies() {
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const movies =
+        document
+        .querySelectorAll(".movie");
+
+    movies.forEach(function(movie) {
+
+        const title =
+            movie
+            .querySelector("h3")
+            .textContent
+            .toLowerCase();
+
+        movie.style.display =
+            title.includes(search)
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* CLICK GLOW */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const glow =
+            document.createElement("div");
+
+        glow.className =
+            "click-glow";
+
+        glow.style.left =
+            event.clientX + "px";
+
+        glow.style.top =
+            event.clientY + "px";
+
+        document.body.appendChild(glow);
+
+        setTimeout(
+            function() {
+                glow.remove();
+            },
+            520
+        );
+
+    }
+);
+
+
+/* MOVIE LOADING SCREEN */
+
+document
+.querySelectorAll(".watch-link")
+.forEach(function(link) {
+
+    link.addEventListener(
+        "click",
+        function() {
+
+            const loading =
+                document
+                .getElementById("loading");
+
+            loading
+            .querySelector(".loading-status")
+            .textContent =
+                "CONNECTING TO MOVIE SERVER...";
+
+            loading
+            .classList
+            .remove("hidden");
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
